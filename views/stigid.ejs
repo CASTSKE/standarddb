@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<title>Result</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/sview.css" type="text/css">
+<style>
+</style>
+<body class="w3-light-grey">
+
+  <!-- Page Container -->
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+  
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+  
+      <!-- Left Column -->
+      <div class="w3-third">
+  
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container">
+            <div class="logo">
+              <a href="/"><img src="/views/CASTb.png"></a>
+			   <span><a href="/index1">Standards</a>
+                <a href="/stig?id=ALL">STIG</a></span></div>
+
+            </div>
+  
+          </div>
+  
+          </div>
+  
+        </div><br>
+  
+      <!-- End Left Column -->
+      </div>
+  
+      <!-- Right Column -->
+      <div class="w3-twothird">
+  
+        <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+          <div class="viewhead">
+          <h2 class="w3-text-grey w3-padding-16">STIG Overview</h2>
+          <!--<form action="/stigreview">
+          <h5 class="w3-text-teal w3-padding-16"><button><span class="w3-tag w3-teal w3-round">REVIEW</span></button></h5>
+        </form>
+        <h5 class="w3-text-teal w3-padding-16"><a href="/stigreview?id=<%=stig[0].vuln_id%>"><span class="w3-tag w3-teal w3-round">REVIEW</span></a></h5>
+       --> </div>
+          <div class="w3-container">
+            <div id="ele1">
+            <h5 class="w3-opacity"><b>STIG ID</b></h5>
+            <h6 class="w3-text-teal"><span class="w3-tag w3-teal w3-round"><%= stig[0].vuln_id%></span></h6>
+          </div><div id="ele2">
+            <h5 class="w3-opacity"><b>Rule ID</b></h5>
+            <p><%= stig[0].rule_id%></p>
+          </div><div id="ele3">
+          <h5 class="w3-opacity"><b>VERSION</b></h5>
+          <p><%= stig[0].version%></p>
+        </div><div id="ele4">
+        <h5 class="w3-opacity"><b>CCI</b></h5>
+        <p><%= stig[0].cci%></p>
+      </div><div id="ele5">
+      <h5 class="w3-opacity"><b>SEVERITY</b></h5>
+      <p><%= stig[0].severity%></p>
+    </div>
+  
+          </div>
+          <hr>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>TITLE</b></h5>
+            <p><%= stig[0].title%></p><br>
+          </div>
+        </div>
+        <div class="w3-container w3-card w3-white">
+       <h2 class="w3-text-grey w3-padding-16">Details</h2>
+       <div class="w3-container">
+         <h5 class="w3-opacity"><b>Description</b></h5>
+         <p><%- stig[0].description%></p>
+         <hr>
+       </div>
+       <div class="w3-container">
+         <h5 class="w3-opacity"><b>Check Text</b></h5>
+         <p><%= stig[0].check_text%></p>
+         <hr>
+       </div>
+       <div class="w3-container">
+         <h5 class="w3-opacity"><b>Fix Text</b></h5>
+         <p><%= stig[0].fix_text%></p><br>
+       </div>
+     </div>
+      <!-- End Right Column -->
+      </div>
+  
+    <!-- End Grid -->
+    </div>
+  
+    <!-- End Page Container -->
+  
+  <footer class="w3-container w3-teal w3-center w3-margin-top">
+  
+  </footer>
+  
+  </body>
+  </html>

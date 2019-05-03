@@ -1,0 +1,63 @@
+<head>
+    <title>CISQ List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="/css/lstyle.css" type="text/css" rel = "stylesheet">
+ 
+<style>
+</style>
+</head>
+<body>
+    <FONT FACE="Arial">
+            <div class="hb">
+              <div class="logo">
+                  <a href="/"> <img src="/views/CASTb.png"></a>
+				   <span><a href="/index1">Standards</a></span>
+                 </div>
+                 <form class="example" action="/cisqf" method="get" >
+                  <center><h2 style="color:black;font-size: 15px;">Search</h2></center>
+                  <input type="text"  name="name" id="name" autofocus >
+                 <button type="submit" value="submit" ><i class="fa fa-search"></i></button>
+              </form> 
+              </div>
+<section>
+<nav>
+<!--
+  <div class="dropdown">
+      <button class="dropbtn">Type  
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        
+      </div>
+    </div> -->
+</nav>
+<article>
+<div style="overflow-x:auto;">
+ <center><b>CISQ</b></center>
+Count:<%=cisq.length%>
+<table>
+    <tr>
+        <th>CISQ ID</th>
+        <th>Descriptor</th>
+        <th>Remediation</th>
+    </tr>
+    <% for(i=0;i<cisq.length;i++){ %>
+            <tr>
+        
+             <td style="width:100px;"><a href="/cisqs?name=<%=cisq[i].cisqid%>"><%= cisq[i].cisqid%></a></td>
+             <td><%= cisq[i].descriptor%></td>
+                <td><%=cisq[i].remediation%></td>
+            </tr>
+        <% } %>
+</table>
+  
+</div>
+</article>
+</section>
+    </FONT>
+</body>

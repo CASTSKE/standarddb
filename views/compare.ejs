@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Result</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/css/sview.css" type="text/css" rel = "stylesheet">
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<style>
+  
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 120px;
+  height: 150px;
+  perspective: 1000px;
+  display: inline-block;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+ 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+/*
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+*/
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+  z-index: 2;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+  z-index: 1;
+  padding-top: 30%;
+
+}
+.card{
+  width: 100%;
+  height: auto;
+ 
+}
+.dp{
+  background-color: transparent;
+  width: 120px;
+  height: 120px;
+  display: inline-block;
+  text-align: center;
+  
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: #bbb;
+}
+.dpc{
+  text-align: center;
+  color: blue;
+display: none;
+}
+.dp:hover .dpc{
+  display: inline-block;
+}
+.stats{
+max-width:550px;
+}
+.stats th{
+max-width:50px;
+border:0.5px solid grey;
+}
+.stats td{
+max-width:50px;
+}
+.num{
+text-align:center;
+}
+  </style>
+</head>
+<body class="w3-light-grey">
+
+  <!-- Page Container -->
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+  
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+  
+      <!-- Left Column -->
+      <div class="w3-third">
+  
+        <div class="w3-white w3-text-grey w3-card-4">
+          <nav>  
+          <div class="logo">
+             <a href="/"> <img src="/views/CASTb.png"></a>
+              
+            </div>
+            <div class="back">
+              
+            </div>
+          </nav></div>
+  
+          
+        </div><br>
+  
+      <!-- End Left Column -->
+      </div>
+  
+<div style="height:700px;" class="w3-twothird" >
+
+  <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+    <div class="viewhead">
+    
+  </div>
+  <div style="float:right;">
+  </div>
+    <div  class="w3-container">
+
+
+  <div  class="w3-container">
+
+<div class="card">
+
+<h2 class="w3-text-grey w3-padding-16">Compare</h2>
+
+<table id="demo" class="stats">
+<thead>
+				<tr>
+					<th>
+						CWE
+					</th>
+					<th>
+						Checkmark
+					</th>
+					<th>
+						Sonarqube
+					</th>
+					<th>
+						CAST
+					</th>
+					<th>
+						Fortify
+					</th>
+				</tr></thead>
+				
+			<% for(var i=0; i<cweid.length; i++) {%>
+				<tr onMouseOver="this.style.background='#F5F4B8'" onMouseOut="this.style.background=''">
+				<%var id=cweid[i].cwe_id%>	
+				<%var result = cmcount.find(item => item.cweid === id);%>
+				<%var result1 = forticount.find(item1 => item1.cweid.replace("CWE ID ","") === id);%>
+							<%if(result || result1){%>		
+					<td>
+						<b><%=cweid[i].cwe_id %></b>
+											
+					</td>
+					<td class="num">
+					<% if (result){ %>
+						<a href="/checkid?name=<%=cweid[i].cwe_id%>">			
+        <%= result.count %></a>
+		<%}%>
+    
+		</td>
+					<td class="num">
+						
+											</td>
+					<td class="num">
+													
+											</td>
+					<td class="num">
+						<%if(result1){%>	
+						
+						 <a href="/fortis?id=<%=result1.cweid%>">						
+					<%= result1.count %></a>
+		<%}%>
+											</td>					
+					
+				</tr>
+				 <%}%>
+				<%}%>
+			</table>
+  
+<!--
+      -->                    
+          
+</div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- End Right Column -->
+</div>
+
+
+<!-- End Grid -->
+
+
+<!-- End Page Container -->
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+
+</footer>
+
+<script>
+$(document).ready(function() {
+    $('#demo').DataTable();
+} );
+</script>
+</body>

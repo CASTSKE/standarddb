@@ -1,0 +1,94 @@
+<head>
+        <title>CVE List</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="colorlib.com">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="/css/lstyle.css" type="text/css" rel = "stylesheet">
+ 
+</head>
+<body>
+        <FONT FACE="Arial">
+                <div class="hb">
+                  <div class="logo">
+                      <a href="/"> <img src="/views/CASTb.png"></a>
+					   <span><a href="/index1">Standards</a></span>
+                     </div>
+                     <form class="example" action="/search" method="get" >
+                      <center><h2 style="color:black;font-size: 15px;">Search CVE</h2></center>
+                      <input type="text"  name="name" id="name" autofocus  placeholder="CVE-YYYY-XXXX">
+                     <button type="submit" value="submit" ><i class="fa fa-search"></i></button>
+                  </form> 
+                  </div>
+<section>
+  <nav>
+    <a href="/cvesearch">Clear All</a>
+      <div class="dropdown">
+          <button class="dropbtn">Year  
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <%for(i=0;i<year.length;i++){%>
+            <a href="/cveyear?y=<%=year[i]%>"><%=year[i]%></a>
+          <%}%>
+          </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">Type  
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="/cvetype?t=denial of service">DoS</a>
+              <a href="/cvetype?t=execute">Code Execution</a>
+              <a href="/cvetype?t=overflow">Overflow</a>
+              <a href="/cvetype?t=memory corruption">Memory Corruption</a>
+              <a href="/cvetype?t=SQL injection">Sql Injection</a>
+              <a href="/cvetype?t=XSS">XSS</a>
+              <a href="/cvetype?t=directory traversal">Directory Traversal</a>
+              <a href="/cvetype?t=HTTP response">HTTP Response Splitting</a>
+              <a href="/cvetype?t=bypass">Bypass something</a>
+              <a href="/cvetype?t=unauthenticated attacker">Gain Information</a>
+              <a href="/cvetype?t=gain privileges">Gain Privileges</a>
+              <a href="/cvetype?t=CSRF">CSRF</a>
+              <a href="/cvetype?t=file inclusion">File Inclusion</a>
+            </div>
+          </div> 
+		
+  </nav>
+  <article>
+  <div style="overflow-x:auto;">
+  <center><b>CVE</b></center>
+
+    Count:<%=cve.length%><br>
+Showing result for: <%=x%>  
+  <table>
+        <tr>
+            <th>CVE-ID</th>
+            <th>Description</th>
+        </tr>
+        <% 
+		var n=0;
+        if(cve.length<500){
+          n=cve.length
+        }
+        else{
+          n=500;
+        }
+		for(i=0;i<n;i++){ %>
+                <tr>
+            
+                 <td style="width:150px;"><a href="/search?name=<%=cve[i].name%>"><%= cve[i].name%></a></td>
+                 <td><%= cve[i].description%></td>
+            
+                </tr>
+            <% } %>
+    </table>
+      
+    </div>
+  </article>
+</section>
+        </FONT>
+</body>

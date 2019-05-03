@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fortify List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="/css/lstyle.css" type="text/css" rel = "stylesheet">
+  
+</head>
+<body>
+<FONT FACE="Arial">
+  <div class="hb">
+    <div class="logo">
+        <a href="/"> <img src="/views/CASTb.png"></a>
+		<span><a href="/index2">Competition</a></span>
+                 
+       </div>
+       <form class="example" action="/fortis" method="get" >
+        <center><h2 style="color:black;font-size: 15px;">Search </h2></center>
+        <input type="text"  name="id" id="id" autofocus  >
+       <button type="submit" value="submit" ><i class="fa fa-search"></i></button>
+    </form> 
+    </div>     
+
+<section>
+    <nav>
+       
+      <div class="dropdown">
+        <button class="dropbtn">Technology 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <%for(i=0;i<tech.length;i++){%>
+          <a href="/fortit?id=<%=encodeURIComponent(tech[i])%>"><%=tech[i]%></a>
+          <%}%>
+        </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn">Category 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <%for(i=0;i<title.length;i++){%>
+            <a href="/fortic?id=<%=encodeURIComponent(title[i])%>"><%=title[i]%></a>
+            <%}%>
+          </div>
+        </div> 
+    </nav>
+
+
+<article>
+<div style="overflow-x:auto;">
+
+<center><b>Fortify</b></center>
+Showing <%=forti.length%> entries.<br>
+Showing result for: <%=x%>
+   <table>
+    <tr>
+      <th>Title</th>
+      <th>Technology</th>
+      <th>Abstract</th>
+    
+    </tr>
+    <% for(i=0;i<forti.length;i++){ %>
+    <tr>
+       
+     <td style="width:75px;"><span><a href="/fortid?id=<%=forti[i].title%>&tech=<%=encodeURIComponent(forti[i].technology)%>"><%= forti[i].title%></a></span></td>
+     <td><%= forti[i].technology%></td>
+     <td><%= forti[i].abstract  %></td>
+
+    </tr>
+<% } %>
+  </table>
+</div>
+</article>
+</section>
+</FONT>
+</body>
+</html>

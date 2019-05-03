@@ -1,0 +1,154 @@
+<html>
+<head>
+  <title>Standards</title>
+  <style>
+  .bg-grey {
+            background-color: #FAFAFA;
+            border-top: 1px solid #EEE;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .bg-dark {
+            background-color: #1C1D21;
+        }
+          
+        .bg-img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .bg-img .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: .8;
+            background: #1C1D21;
+        } 
+        .logo{
+    height:100px;
+  
+  }
+  .logo img{
+    position: left;
+    float:left;
+    max-height: 50px;
+    display: block;
+  }
+        .logos{
+          margin-top:  100px;;
+        }
+        
+    .upload{
+      margin-top: 10px;  
+    float: right; 
+      width: 100%;
+    
+    }
+    
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    height: auto;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #0b7dda;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 38px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: rgb(3, 3, 3);
+}
+
+.searchButton {
+  position: absolute;
+  right: -10px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid rgb(7, 7, 7);
+  background: rgb(146, 158, 160);
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+
+  </style>
+</head>
+
+<body>
+    <div class="bg-img" style="background-image: url('img/background1.jpg');">
+      <div class="overlay"></div>
+  </div> 
+  <div class="logo">
+      <a class="active" href="/"><img src="img/CAST2.png"></a>
+</div>
+
+  <div class ="logos">
+  <center>
+    <h1 style="color:white"> Standards</h1>
+    <a href="/cvesearch"><img src="img/cve.jpg" width="150" height="150"></a>
+    <a href="/cwe1?id=ALL"><img src="img/cwe.jpg" width="150" height="150"></a>
+    <a href="/stig"><img src="img/stig.png" width="150" height="150"></a>
+  <a href="/nist"><img src="img/NIST_logo.png" width="150" height="150"></a>
+  <a href="/cisq"><img src="img/cisq.png" width="150" height="150"></a>
+	<a href="/pci"><img src="img/pci.jpg" width="150" height="150"></a>
+
+    </center>
+  </div>
+  </body></html>

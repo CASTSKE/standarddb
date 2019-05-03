@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Result</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/css/sview.css" type="text/css" rel = "stylesheet">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<style>
+  
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 120px;
+  height: 150px;
+  perspective: 1000px;
+  display: inline-block;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+ 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+/*
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+*/
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+  z-index: 2;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+  z-index: 1;
+  padding-top: 30%;
+
+}
+.card{
+  width: 100%;
+  height: auto;
+ 
+}
+.dp{
+  background-color: transparent;
+  width: 120px;
+  height: 120px;
+  display: inline-block;
+  text-align: center;
+  
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: #bbb;
+}
+.dpc{
+  text-align: center;
+  color: blue;
+display: none;
+}
+.dp:hover .dpc{
+  display: inline-block;
+}
+.stats{
+max-width:550px;
+}
+.stats th{
+max-width:50px;
+border:0.5px solid grey;
+}
+.stats td{
+max-width:50px;
+}
+.num{
+text-align:center;
+}
+  </style>
+</head>
+<body class="w3-light-grey">
+
+  <!-- Page Container -->
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+  
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+  
+      <!-- Left Column -->
+      <div class="w3-third">
+  
+        <div class="w3-white w3-text-grey w3-card-4">
+          <nav>  
+          <div class="logo">
+             <a href="/"> <img src="/views/CASTb.png"></a>
+              
+            </div>
+            <div class="back">
+              
+            </div>
+          </nav></div>
+  
+          
+        </div><br>
+  
+      <!-- End Left Column -->
+      </div>
+  
+<div style="height:700px;" class="w3-twothird" >
+
+  <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+    <div class="viewhead">
+    <h2 class="w3-text-grey w3-padding-16">Analytics</h2>
+  </div>
+  <div style="float:right;">
+  <h4 class="w3-text-teal w3-padding-16"><a href="/compare"><span class="w3-tag w3-teal w3-round">COMPARE</span></a></h4></div>
+    <div  class="w3-container">
+
+<div class="card">
+
+<center><h3>Standards:</h3>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+     <h5>CWE</h5> 
+     <h3><%=cwe%></h3> 
+	</div>
+    <div class="flip-card-back">
+     
+          </div>
+  </div>
+</div>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+     <h5>CVE</h5> 
+     <h3><%=cve%></h3> 
+	</div>
+    <div class="flip-card-back">
+     
+          </div>
+  </div>
+</div>
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+     <h5>STIG</h5> 
+	  <h3><%=stig%></h3> 
+    </div>
+    <div class="flip-card-back">
+     
+          </div>
+  </div>
+</div>
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>NIST</h5> 
+	   <h3><%=nist%></h3> 
+      </div>
+      <div class="flip-card-back">
+        
+            </div>
+    </div>
+  </div>
+
+  <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+         <h5>CISQ</h5> 
+		   <h3><%=cisq%></h3> 
+        </div>
+        <div class="flip-card-back">
+        
+              </div>
+      </div>
+    </div>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+           <h5>PCi</h5> 
+		    <h3><%=pci%></h3> 
+          </div>
+          <div class="flip-card-back">
+           
+                </div>
+        </div>
+      </div>
+  
+<!--
+      -->                    
+          </center>
+</div><hr>
+    </div>
+
+<div  class="w3-container">
+
+<div class="card">
+ 
+  <center> <h3>Competition: </h3>
+  <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+           <h5>FORTIFY</h5> 
+		    <h3><%=fortify%></h3> 
+          </div>
+          <div class="flip-card-back">
+           
+                </div>
+        </div>
+      </div>
+      <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+             <h5>CHECKMARK</h5> 
+			   <h3><%=cmark%></h3> 
+            </div>
+            <div class="flip-card-back">
+            
+                  </div>
+          </div>
+        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+               <h5>CAST</h5>
+ <h3><%=cq%></h3> 			   
+              </div>
+              <div class="flip-card-back">
+               
+                    </div>
+            </div>
+          </div>
+		  <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+               <h5>Sonarqube</h5>
+ <h3><%=sonar%></h3> 			   
+              </div>
+              <div class="flip-card-back">
+               
+                    </div>
+            </div>
+          </div>
+        </center>
+        </div><hr>
+      </div>
+      <div  class="w3-container">
+       
+<div class="card">
+ 
+    <center>    <h3>OWASP and CERT</h3>
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>SANS Top 25 (2010)	</h5> 
+	    <h3><%=count.a%></h3> 
+      </div>
+      <div class="flip-card-back">
+       
+            </div>
+    </div>
+  </div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>CWE/SANS Top 25 (2009)	</h5> 
+	     <h3><%=count.b%></h3> 
+      </div>
+      <div class="flip-card-back">
+      
+            </div>
+    </div>
+  </div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>OWASP Top Ten (2013):	</h5>
+ <h3><%=count.c%></h3> 	   
+      </div>
+      <div class="flip-card-back">
+       
+            </div>
+    </div>
+  </div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>OWASP Top 10 (2010)</h5> 
+	   <h3><%=count.d%></h3> 
+      </div>
+      <div class="flip-card-back">
+        
+            </div>
+    </div>
+  </div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>OWASP Top 10 (2007)	 </h5> 
+	    <h3><%=count.e%></h3> 
+      </div>
+      <div class="flip-card-back">
+       
+            </div>
+    </div>
+  </div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>OWASP Top 10 (2004)	 </h5> 
+	    <h3><%=count.f%></h3> 
+      </div>
+      <div class="flip-card-back">
+       
+            </div>
+    </div>
+  </div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>The CERT C Secure Coding Standard (2008)</h5> 
+	    <h3><%=count.g%></h3> 
+      </div>
+      <div class="flip-card-back">
+       
+            </div>
+    </div>
+  </div>
+
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h6>The CERT Oracle Secure Coding Standard for Java (2011)</h6> 
+	   <h3><%=count.h%></h3> 
+      </div>
+      <div class="flip-card-back">
+        
+            </div>
+    </div>
+  </div>
+<div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+       <h5>SEI CERT C++ Coding Standard (2016)</h5> 
+	     <h3><%=count.i%></h3> 
+      </div>
+      <div class="flip-card-back">
+      
+            </div>
+    </div>
+  </div>
+  </center><hr>
+  <div  class="w3-container">
+
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- End Right Column -->
+</div>
+
+
+<!-- End Grid -->
+
+
+<!-- End Page Container -->
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+
+</footer>
+
+</body>

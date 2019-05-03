@@ -1,0 +1,84 @@
+<head>
+        <title>Result</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="colorlib.com">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="/css/lstyle.css" type="text/css" rel = "stylesheet">
+    <style>
+    </style>
+    </head>
+    <body>
+        <FONT FACE="Arial">
+                <div class="hb">
+                  <div class="logo">
+                      <a href="/"> <img src="/views/CASTb.png"></a>
+					   <span><a href="/index1">Standards</a></span>
+                     </div>
+                     <form class="example" action="/nistsearch" method="get" >
+                      <center><h2 style="color:black;font-size: 15px;">Search</h2></center>
+                      <input type="text"  name="name" id="name" autofocus >
+                     <button type="submit" value="submit" ><i class="fa fa-search"></i></button>
+                  </form> 
+                  </div>
+    <section>
+    <nav>
+    <!--
+      <div class="dropdown">
+          <button class="dropbtn">Type  
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            
+          </div>
+        </div> -->
+    </nav>
+    <article>
+    <div style="overflow-x:auto;">
+	<center><b>NIST</b></center>
+    Count:<%=n.length%>
+    <table>
+        <thead>
+        <tr>
+       <th rowspan="2">Number</th>
+    <th >Title</th> 
+    <th rowspan="2">Domain </th>
+    <th>Priority</th>      
+    <th colspan="2">Impact</th>
+     </tr>
+       <!-- <tr>
+                           </tr>
+        -->
+</thead>
+        <% for(i=0;i<n.length;i++){ %>
+                <tr>
+            
+            <!--     <td ><a href="/nistid?name=<%=n[i].cntlno%>"><%= n[i].cntlno%></a></td>
+                 <td width="60%"><%= n[i].name%></td>
+                 
+                    <td ><%if(n[i].low){%>
+                     LOW
+                    <%}%></td><td >
+                    <%if(n[i].mod){%>
+                        MODERATE
+                        <%}%></td>
+                    <td ><%if(n[i].high){%>
+                           HIGH
+                        <%}%></td>
+                 -->
+          <td><%=n[i].number%></td>
+          <td><a href="/nistid?name=<%=n[i].number%>"><%=n[i].title%></td>
+            <td><%=n[i].domain%></td>
+            <td><%=n[i].priority%></td>
+            <td><%=n[i].impact%></td>
+        </tr>
+          <% } %>
+        </tbody>
+      
+    </div>
+    </article>
+    </section>
+        </FONT>
+    </body>

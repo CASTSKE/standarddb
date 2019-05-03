@@ -1,0 +1,109 @@
+<head>
+    <title>Result</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/css/sview.css" type="text/css" rel = "stylesheet">
+
+</head>
+<body class="w3-light-grey">
+
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    
+      <!-- The Grid -->
+      <div class="w3-row-padding">
+    
+        <!-- Left Column -->
+        <div class="w3-third">
+    
+          <div class="w3-white w3-text-grey w3-card-4">
+            <div class="w3-display-container">
+              <div class="logo">
+               <a href="/"> <img src="/views/CASTb.png"></a>
+			   <span><a href="/index2">Competition</a>
+                <a href="/fortify?id=ALL">Fortify</a></span>
+
+              </div>
+    
+            </div>
+    
+            </div>
+    
+          </div><br>
+    
+        <!-- End Left Column -->
+        </div>
+    
+<div class="w3-twothird">
+
+    <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+      <div class="viewhead">
+      <h2 class="w3-text-grey w3-padding-16">Details</h2>
+     
+    <h5 class="w3-text-teal w3-padding-16"><a href="/kkreview?id=<%=forti[0].title%>"><span class="w3-tag w3-teal w3-round">REVIEW</span></a></h5>
+    </div>
+      <div class="w3-container">
+        <div id="ele1">
+        <h5 class="w3-opacity"><b>Title</b></h5>
+        <h6 class="w3-text-teal"><span class="w3-tag w3-teal w3-round"><%= forti[0].title%> </span></h6>
+      </div><div id="ele2">
+        <h5 class="w3-opacity"><b>Technology</b></h5>
+        <p><%= forti[0].technology %></p>
+      </div>
+      
+      <div class="w3-container"><hr>
+        <h5 class="w3-opacity"><b>CWE</b></h5>
+        <p><% var cwe=forti[0].cwe_id
+                cwe=cwe.split(",")
+                if(cwe !=null){
+                for(i=0;i<cwe.length;i++){%>
+                <a href="/cweid?id=<%=cwe[i]%>"><%= cwe[i] %></a>
+                <%}}%>
+		</p><br>
+      </div>
+    </div>
+</div>
+    <div class="w3-container w3-card w3-white">
+   <div class="w3-container">
+     <h5 class="w3-opacity"><b>Abstract</b></h5>
+     <p><%=forti[0].abstract  %></p>
+     <hr>
+   </div>
+   <div class="w3-container">
+     <h5 class="w3-opacity"><b>Explanation</b></h5>
+	<p><%=forti[0].explanation %>
+	</p>
+     <hr>
+   </div>
+   <div class="w3-container">
+     <h5 class="w3-opacity"><b>Examples</b></h5>
+     <p><%= forti[0].example %></p><br>
+   </div>
+   <div class="w3-container">
+    <h5 class="w3-opacity"><b>References</b></h5>
+    <p>
+	<% ft=forti[0].reference 
+                ft=ft.split("[")
+                for(i=0;i<ft.length;i++){
+                %>
+            <%=ft[i]  %><br>
+    <%}%>
+        </p><br>
+  </div>
+
+ </div>
+  <!-- End Right Column -->
+  </div>
+
+<!-- End Grid -->
+
+
+<!-- End Page Container -->
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+
+</footer>
+
+</body>

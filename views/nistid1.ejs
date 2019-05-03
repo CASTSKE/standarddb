@@ -1,0 +1,149 @@
+<head>
+    <title>Result</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/css/sview.css" type="text/css" rel = "stylesheet">
+
+</head>
+<body class="w3-light-grey">
+
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    
+      <!-- The Grid -->
+      <div class="w3-row-padding">
+    
+        <!-- Left Column -->
+        <div class="w3-third">
+    
+          <div class="w3-white w3-text-grey w3-card-4">
+            <div class="w3-display-container">
+              <div class="logo">
+               <a href="/"> <img src="/views/CASTb.png"></a>
+			   <span><a href="/index1">Standards</a>
+                <a href="/nist?id=ALL">NIST</a></span></div>
+
+              </div>
+    
+            </div>
+    
+            </div>
+    
+          </div><br>
+    
+        <!-- End Left Column -->
+        </div>
+    
+<div class="w3-twothird">
+
+    <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+      <div class="viewhead">
+      <h2 class="w3-text-grey w3-padding-16">NIST </h2>
+     
+   <!-- <h5 class="w3-text-teal w3-padding-16"><a href="/nistreview?id=<%=n[0].cntlno%>"><span class="w3-tag w3-teal w3-round">REVIEW</span></a></h5>
+   --> </div>
+    <div class="w3-container">
+        <table cellpadding="2" cellspacing="0">
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Domain</th>
+                <th>Priority</th>
+                <th>Impact</th><hr>
+            </tr>
+            <tr>
+                <td><%=n[0].number%></td>
+                <td><%=n[0].title%></td>
+                <td><%=n[0].domain%></td>
+                <td><%=n[0].priority%></td>
+                <td><%=n[0].impact%></td>
+            </tr>
+        </table>
+    </div>
+   
+    <hr>
+   <div class="w3-container">
+    <h5 class="w3-opacity"><b>Instructions</b></h5>
+    <p>
+        <% if(n[0].instructions !=null){
+            s=n[0].instructions.split("|1|")
+            %><%=s[1]%><br>
+            <%
+            for(i=2;i<s.length;i++){
+            s1=s[i].split("|2|")  
+            %>
+            <div class="data"><legend ><%=s1[1]%></legend>
+            <span><%=s1[2]%></span>
+            <%for(j=3;j<s1.length;j++){
+                s2=s1[j].split("|3|")
+                %><div class="datav">
+                    <legend><%=s2[1]%></legend>
+                    <span><%=s2[2]%></span>
+                </div>
+                <%}%>
+            </div>    
+        <%}}%>  
+        </p><br>
+    </p>
+    <hr>
+  </div>
+  <div class="w3-container">
+      <h5 class="w3-opacity"><b>Guidance</b></h5>
+      <p><%if(n[0].guidance){
+        s=n[0].guidance.split("|1|")  
+        %> <%=s[1]%>
+        <%}%></p>
+      <hr>
+    </div>
+    <div class="w3-container">
+        <h5 class="w3-opacity"><b>Enhancements</b></h5>
+        <p><%if(n[0].enhancements!=null){
+            s=n[0].enhancements.split("|1|")  
+            for(i=1;i<s.length;i++){
+                s1=s[i].split("|2|")  
+                %>
+                <div class="data"><legend ><%=s1[1]%></legend>
+                <span><%=s1[2]%></span><br>Impact:
+                <%for(j=3;j<s1.length;j++){
+                    if(s1[j].match(/LOW|MODERATE|HIGH/g)){
+                    %><mark><%=s1[j]%></mark>&emsp;
+                    <%}
+                    else{
+                        s2=s1[j].split("|3|")
+                    %><br><%
+                    for(k=1;k<s2.length;k++){
+                        if(s2[k].indexOf("|4|")>0){
+                            s3=s2[k].split("|4|")
+                    %>
+                    <div class="datav"><legend><%=s3[1]%></legend>
+                    <span><%=s3[2]%></span>
+                    </div><% }
+                    else{%>
+                    <span><%=s2[k]%></span>
+                      <%}}}
+                    %>
+                    
+                    <%}%>
+                </div>
+             <%}}%>
+            </p>
+        <hr>
+      </div>
+
+ 
+ </div>
+  <!-- End Right Column -->
+  </div>
+
+<!-- End Grid -->
+
+
+<!-- End Page Container -->
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+
+</footer>
+
+</body>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<title>Result</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/css/sview.css" type="text/css" rel = "stylesheet">
+<style>
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+
+    <!-- Left Column -->
+    
+    <div class="w3-third">
+
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <div class="logo">
+           <a href="/"> <img src="/views/CASTb.png"></a>
+		    <span><a href="/index1">Standards</a>
+            <a href="/cwe1?id=ALL">CWE</a></span>
+
+          </div>
+
+        </div>
+
+        </div>
+
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+
+      <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+        <div class="viewhead">
+        <h2 class="w3-text-grey w3-padding-16">CWE Overview</h5>
+        <h5 class="w3-text-teal w3-padding-16"><a href="/cwereview?id=<%=cwe[0].cwe_id%>"><span class="w3-tag w3-teal w3-round">REVIEW</span></a></h5>
+      </div>
+        <div class="w3-container">
+          <div id="ele1">
+            <h5 class="w3-opacity"><b>CWE ID</b></h5>
+          <h6 class="w3-text-teal"><span class="w3-tag w3-teal w3-round"><%= cwe[0].cwe_id%></span>
+          </div><div id="ele2">
+            <h5 class="w3-opacity"><b>Weakness</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p><%= cwe[0].weakness_abstraction%></p>  
+        </div>
+        <div id="ele3">
+            <h5 class="w3-opacity"><b>Status</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p><%= cwe[0].status%></p>
+  
+        </div>
+          
+        </div><hr>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Name</b></h5>
+          <h6 class="w3-text-teal"></h6>
+          <p><%= cwe[0].name%></p>
+          <hr>
+        </div></div>
+        <div class="w3-container w3-card w3-white">
+          <h2 class="w3-text-grey w3-padding-16">Details</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Description</b></h5>
+          <h6 class="w3-text-teal"></h6>
+          <p><%= cwe[0].description%></p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Extended Description</b></h5>
+          <h6 class="w3-text-teal"></h6>
+          <p><%= cwe[0].extended_description%></p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Related Weaknesses</b></h5>
+          <h6 class="w3-text-teal"></h6>
+          <p> 
+            <table style="background:white;width: 90%;"><tr>
+                <th >Nature</th><th >CWE ID</th><th >View ID</th><th >Ordinal</th>
+            </tr>   
+    <%s= cwe[0].related_weaknesses.split("::")
+    for(i=1;i<s.length-1;i++){
+        s1=s[i].split(":")
+    %><tr>
+    <td><%=s1[1]%></td> 
+    <td><a href="/cweid?id=<%=s1[3]%>"><%=s1[3]%></td> 
+    <td><%=s1[5]%></td>
+    <td><%if(s1[7]){%><%=s1[7]%><%}%></td>    
+</tr>
+    <%}%>
+</table>
+          </p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Weakness Ordinalities</b></h5>
+          <h6 class="w3-text-teal"></h6>
+          <p>
+            <%s= cwe[0].weakness_ordinalities.split("::")
+            for(i=1;i<s.length-1;i++){
+                s1=s[i].split(":")
+            %>
+            <strong><%=s1[1]%></strong><p style="margin:10px;"><%=s1[3]%></p>
+            <%}
+            %>
+          </p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Applicable Platforms</b></h5>
+          <h6 class="w3-text-teal"></h6>
+          <p>
+            <%s= cwe[0].applicable_platforms.split("::")
+            for(i=1;i<s.length-1;i++){
+            s1=s[i].split(":")
+            if(s1[0].search(/LANGUAGE CLASS/g)>=0){     %>
+            <p>    Class:<%=s1[1]%> (<%=s1[3]%>)</p>
+            <%}
+            if(s1[0].search(/LANGUAGE NAME/g)>=0){    %>
+                  <p>  <%=s1[1]%> (<%=s1[3]%>)</p>
+            <%}
+        if(s1[0].search(/OPERATING SYSTEM CLASS/g)>=0){    %>
+           <p>Operating System: <%=s1[1]%> (<%=s1[3]%>)</p>
+           <%} 
+
+           if(s1[0].search("TECHNOLOGY NAME")>=0){    %>
+            <p>Technologies: <%=s1[1]%> (<%=s1[3]%>)</p>
+    <%}   
+	if(s1[0].search("PARADIGN NAME")>=0){    %>
+      <p>Paradign: <%=s1[1]%> (<%=s1[3]%>)</p>
+<%}%>
+
+
+            <%}%>
+          </p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Examples</b></h5>
+          <h6 class="w3-text-teal"></h6>
+          <p>
+            <%s= cwe[0].examples.split("example:")
+                for(i=1;i<s.length;i++){
+                if(s[i].search(/LANGUAGE:/)>-1){    
+                %>
+                <%n=s[i].match(/NATURE:.+:/)
+                l=s[i].match(/LANGUAGE:.+:/)
+                nat=n[0].replace(/NATURE:/,"")
+                %>
+                <%if(l){
+                    lang=l[0].replace(/LANGUAGE:/,"")
+                    %>
+                Language:<%=lang.replace(/:/g,'')%>
+                <%}     %>
+                
+                Nature:<%=nat.replace(/[^a-zA-Z]/g,'')%>
+                <pre style="clear:both; border:1px solid black; background-color: #ebd5e8; padding-left: 10px; ">   
+              <%var code=s[i].split('\n')
+              code.splice(0,3)
+              code=code.join("\n")      
+              %>
+                <code><%=code%></code>    
+            </pre> 
+            <%}
+          }%>
+          </p><br>
+        </div>
+        <div class="w3-container">
+            <h5 class="w3-opacity"><b>Background Details</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p><%= cwe[0].background_details.replace(/::/g,"")%></p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Alternate terms</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <%s= cwe[0].alternate_terms.split("::")
+                for(i=1;i<s.length-1;i++){
+                s1=s[i].match(/TERM:([^:]*)/g)
+                s2=s[i].match(/DESCRIPTION:(.*)/g)||[""]
+                %>
+                <b><%=s1[0].replace(/TERM:/g,'')%>:</b>
+                <%=s2[0].replace(/DESCRIPTION:/g,'     ')%><hr>
+            <%}%>    
+            </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Modes of Introduction</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <table style="background:white;width: 90%;"><tr>
+                    <th >Phase</th><th >Notes</th>
+                </tr>
+                <%s= cwe[0].modes_of_introduction.split("::")
+                for(i=1;i<s.length-1;i++){
+                    s1=s[i].substring(s[i].indexOf("PHASE:")+6,s[i].length)
+                    s2=s[i].substring(s[i].indexOf("NOTE:"),s[i].length)
+                %><tr>
+                    <td><%=s1.replace(/:NOTE:.+/g,'')%></td>
+                    <td><%if(s2.search(/NOTE:/)>=0){
+                        %><%=s2.replace(/NOTE:/g,'')%>
+                    <%}%></td>
+                </tr>    
+                <%} %></table>    
+            </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Exploitation Factors</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p><%= cwe[0].exploitation_factors%></p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Likelyhood of Exploit</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p><%= cwe[0].likelyhood_of_exploit%></p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Common Consequences</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <table style="background:white;"><tr>
+                    <th >SCOPE</th><th >IMPACT</th><th >Likelyhood</th>
+                </tr>
+                    
+                <%s=cwe[0].common_consequences
+                s=s.split("::")
+                for(i=1;i<s.length-1;i++){
+                s1=s[i].substring(s[i].indexOf("SCOPE:")+6,s[i].indexOf(":IMPACT"))
+                s2=s[i].substring(s[i].indexOf(":IMPACT:"),s[i].length)
+                s3=s[i].substring(s[i].indexOf(":LIKELYHOOD:"),s[i].length)
+                s2=s2.replace(/:IMPACT:/g,', ')
+                l=/LIKELYHOOD:/g
+                %><tr>
+                <td><%-s1.replace(/:SCOPE:/g,'<br>')%></td>
+                <td><b>Technical Impact:</b><%-s2.replace(/:NOTE:/g,'<br>')%></td>
+                <td><%if(l.test(s3)){%> <%=s3%><%}%></td>   
+            <%}
+            %>
+        </tr></table>
+            </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Detection Methods</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <%s= (cwe[0].detection_methods).split("::")
+                for(i=1;i<s.length-1;i++){
+                    s1=s[i].substring(s[i].indexOf("METHOD:")+7,s[i].indexOf(":DESCRIPTION"))
+                    s2=s[i].substring(s[i].indexOf("DESCRIPTION:")+12,s[i].length )
+                    s3=s[i].substring(s[i].indexOf(":EFFECTIVENESS:"),s[i].length)
+            
+                s2=s2.replace(/:EFFECTIVENESS:.+/,'')
+                  
+                %>
+                <h6 style="color:blue;"><%=s1%></h6>
+                <%-s2.replace(/:/g,':<br>&emsp;')%><br>
+                
+                <% pat=/EFFECTIVENESS:/g
+                if(pat.test(s3)){%>
+                    <b>Effectiveness <%=s3.replace(/EFFECTIVENESS:/g,' ') %></b><br>
+                    <%}%>
+                    <hr>
+                    <%}%>
+                
+            </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Potential Mitigations</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p><%s= cwe[0].potential_mitigations.split("::")
+                for(i=1;i<s.length-1;i++){
+                    s1=s[i].substring(s[i].indexOf("PHASE:")+6,s[i].indexOf(":DESCRIPTION"))
+                    s2=s[i].substring(s[i].indexOf("STRATEGY:"),s[i].indexOf(":DESCRIPTION") )
+                    s3=s[i].substring(s[i].indexOf("DESCRIPTION:")+12,s[i].length)
+                 %>
+                <h6 style="color:blue;">Phase: <%=s1.replace(/:STRATEGY:.+/,'')%></h6>
+                <% pat1=/STRATEGY:/g
+                if(pat1.test(s2)){%>
+                <b>Strategy: <%=s2.replace(/STRATEGY:/,'') %></b>
+                    <%}%><br>
+                <p style="margin:10px;"> <%=s3%></p>
+                <hr>
+                    <%}%>
+                </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Observed Examples</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <table style="background:white;"><tr>
+                    <th >References</th><th >Description</th>
+                </tr>   
+        <%s =cwe[0].observed_examples.split("::")
+        for(i=1;i<s.length-1;i++){
+            s1=s[i].substring(s[i].indexOf("REFERENCE:")+10,s[i].indexOf(":DESCRIPTION"))
+            s2=s[i].substring(s[i].indexOf("DESCRIPTION:")+12,s[i].length)
+            %><tr>
+                    <td><a href="search/?name=<%=s1%>"><%=s1%></a></td>
+                    <td><%=s2.replace(/:LINK:.+/,'')%></td>
+                   </tr>
+
+       <% }
+        %></table>  
+            </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Functional Areas</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <%= cwe[0].functional_areas.replace(/::/g,'')%> 
+            </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Affected Resources</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <%= cwe[0].affected_resources.replace(/::/g,'')%>
+            </p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Taxonomy mapping</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <%if(cwe[0].taxonomy_mappings){%>
+                    <table style="background:white;"><tr>
+                            <th  >Mapped Taxonomy Name</th><th >Node ID</th><th >Fit</th><th >Mapped Node Name</th>
+                        </tr>    
+                <%s= cwe[0].taxonomy_mappings.split("::")
+                for(i=1;i<s.length-1;i++){
+                    s1=s[i].substring(s[i].indexOf("TAXONOMY NAME:")+14, s[i].indexOf(":ENTRY"))
+                    s2=s[i].substring(s[i].indexOf("ENTRY ID:"), s[i].length)
+                    s3=s[i].substring(s[i].indexOf("MAPPING FIT:"), s[i].length)
+                    s4=s[i].substring(s[i].indexOf("ENTRY NAME:"), s[i].length)
+                    %>
+                <tr><%
+                    p1=//g
+                    p2=/ENTRY ID:/g
+                    p3=/MAPPING FIT:/g
+                    p4=/ENTRY NAME:/g
+                    %>
+                    <td ><%=s1%></td>
+                    <td><%if(p2.test(s2)){
+                        s2=s2.replace(/ENTRY ID:/g,'')
+                        %>
+                        <%=s2.replace(/:.+/g,'')  %> <%}%></td>
+                    <td><%if(p3.test(s3)){%>
+                        <%=s3.replace(/MAPPING FIT:/g,'')%><%}%></td>
+                    <td><%if(p4.test(s4)){
+                        s4=s4.replace(/ENTRY NAME:/,'')
+                        %>
+                        <%=s4.replace(/:MAPPING FIT:.+/,'')%><%}%></td>
+                </tr>                    
+                    
+                    <%} %></table><%}%>    
+            </p>
+            <hr>
+          </div>                     
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Realated Attack patterns</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p><%= cwe[0].related_attack_patterns%></p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Notes</b></h5>
+            <h6 class="w3-text-teal"></h6>
+            <p>
+                <%s= cwe[0].notes.split("::")
+                for(i=1;i<s.length-1;i++){
+                    s1=s[i].split(":")
+
+                    %>
+                    <h6 style="color:blue;"><%=s1[1]%></h6><p style="margin:10px;"><%=s1[3]%></p>
+                <%} %>
+            </p>
+            <hr>
+          </div>
+
+        </div>
+
+        </div>
+    <!-- End Right Column -->
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+
+</footer>
+
+</body>
+</html>

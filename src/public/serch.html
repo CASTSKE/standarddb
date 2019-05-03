@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+      angular.module('myApp',[]).controller('controller',function($scope,$http){
+        })
+    </script>
+<style>
+  body {
+    font-family: Arial;
+    height: auto;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  .logo{
+    height:50px;
+  
+  }
+  .logo img{
+    position: left;
+    float:left;
+    max-height: 50px;
+    display: block;
+  }
+  .header1 {
+    text-align: center;
+    color: #f1f1f1;
+    width: auto;
+    height: 20PX;font-size: 15px;
+
+    }
+    .upload{
+      
+      height: auto;
+      width: 100%;
+     
+    }
+    form.import{
+      padding-bottom: 10px;
+      padding-top: 5px;
+      margin:auto;
+      max-width: 300px;
+
+    }
+  form.import input[type=file] {
+    padding: 10px;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 5px;
+
+    background: rgb(250, 251, 252);
+  }
+  form.import input[type="submit"] {
+    background-color:rgb(243, 246, 247);
+    font-size: 15px;
+    margin-top: 10px;
+    height: auto;
+    width: 40%;
+    height: 5%;
+    color: black;
+  }
+  form.import h1{
+    text-align: center;
+    color: white;
+    
+    
+  }
+
+  .bg-grey {
+            background-color: #FAFAFA;
+            border-top: 1px solid #EEE;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .bg-dark {
+            background-color: #1C1D21;
+        }
+        
+        
+        /* --  background image section  -- */
+        
+        .bg-img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .bg-img .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: .8;
+            background: #1C1D21;
+        } 
+
+  </style>
+  </head>
+  
+
+</head>
+  <body ng-app="myApp" ng-cntroller="controller">
+      <div class="bg-img" style="background-image: url('/views/background1.jpg');">
+        <div class="overlay"></div>
+    </div> 
+
+    <div class="logo">
+      <a href="/"><img src="img/CAST2.png"></a>
+    </div>
+      <div class="header1">
+  
+    <h1 >Vulnerability DB</h1>
+  </div> 
+
+  <div class="upload">
+  <form action="/uploadnew" method="post" enctype="multipart/form-data" class="import">
+    <center><h2 style="color:white;">Upload csv file</h2></center>
+    <input type="file" name="userFile" id="inpf" accept=".csv"><br>
+    <center><input type="submit" name="Upload" value="submit"></center>
+  </form>
+  
+</div>   
+</body>
+</html>

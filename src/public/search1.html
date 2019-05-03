@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Standards</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+      angular.module('myApp',[]).controller('controller',function($scope,$http){
+        })
+    </script>
+<style>
+  body {
+    font-family: Arial;
+    height: auto;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  .logo{
+    height:100px;
+  
+  }
+  .logo img{
+    position: left;
+    float:left;
+    max-height: 50px;
+    display: block;
+  }
+  .header1 {
+    text-align: center;
+    color: #f1f1f1;
+    width: auto;
+    height: auto;
+    }
+    .upload{
+      margin-top: 80px;
+      height: auto;
+      width: 100%;
+     
+    }
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #0b7dda;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  
+  .bg-grey {
+            background-color: #FAFAFA;
+            border-top: 1px solid #EEE;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .bg-dark {
+            background-color: #1C1D21;
+        }
+          
+        .bg-img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .bg-img .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: .8;
+            background: #1C1D21;
+        } 
+
+  </style>
+  </head>
+  
+
+
+  <body ng-app="myApp" ng-cntroller="controller"> 
+        <div class="bg-img" style="background-image: url('img/background1.jpg');">
+                    <div class="overlay"></div>
+                </div> 
+         
+        
+    <div class="logo">
+            <a class="active" href="/"><img src="img/CAST.jpg"></a>
+    </div>
+      <div class="header1">
+  
+    <h1 >Vulnerability DB</h1>
+  </div> 
+
+  <div class="upload">
+    <form class="example" action="/search" method="get" style="margin:auto;max-width:300px">
+        <center><h2 style="color:white;">Search CVE</h2></center>
+        <input type="text"  name="name" id="name" autofocus  placeholder="CVE-YYYY-XXXX">
+       <button type="submit" value="submit" ><i class="fa fa-search"></i></button>
+    </form> 
+    </div>
+</body>
+</html>

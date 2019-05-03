@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="/css/lstyle.css" type="text/css" rel = "stylesheet">
+ 
+<style>
+ 
+
+</style>
+</head>
+<body>
+<FONT FACE="Arial">
+  <div class="hb">
+    <div class="logo">
+        <a href="/"> <img src="/views/CASTb.png"></a>
+       </div>
+       <form class="example" action="/searchall" method="get" >
+        <center><h2 style="color:black;font-size: 15px;">Search</h2></center>
+        <input type="text"  name="name" id="id" autofocus  placeholder="Type Here">
+       <button type="submit" value="submit" ><i class="fa fa-search"></i></button>
+    </form> 
+    </div>     
+
+<section>
+    <nav>
+    <!-- <span><a href="/searchall">CVE</a></span>-->
+    <button class="bvalue" onclick="display(event,'cve')"><i class="fa fa-chevron-circle-right"></i> CVE</button>   
+    <button class="bvalue" onclick="display(event,'cwe')"><i class="fa fa-chevron-circle-right"></i> CWE</button>   
+    <button class="bvalue" onclick="display(event,'fortify')"><i class="fa fa-chevron-circle-right"></i> fortify</button>   
+        
+</nav>
+
+
+<article>
+
+<center><h1>Search result for: <%=x%> </h1></center>
+<div id='cve' class="bcontent">
+Count:<%=data.length%><br>
+  <table >
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+    </tr>
+    <% for(i=0;i<data.length;i++){ %>
+    <tr>
+
+     <td style="width:75px;"><span><a href="/search?name=<%=data[i].name%>"><%= data[i].name%></a></sapn></td>
+     <td><%= data[i].description%></td>
+
+    </tr>
+<% } %>
+  </table>
+</div>
+
+<div id='cwe' class="bcontent">
+    Count:<%=cwe.length%><br>
+      <table >
+        <tr>
+          <th>CWE ID</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+        <% for(i=0;i<cwe.length;i++){ %>
+        <tr>
+    
+         <td style="width:75px;"><span><a href="/cweid?id=<%=cwe[i].cwe_id%>"><%= cwe[i].cwe_id%></a></sapn></td>
+         <td><%=cwe[i].name%></td>
+         <td><%= cwe[i].description%></td>
+    
+        </tr>
+    <% } %>
+      </table>
+    </div>
+<!--
+    --> <div id='fortify' class="bcontent">
+        Count:<%=forti.length%><br>
+          <table >
+            <tr>
+              <th>Title</th>
+              <th>Technology</th>
+              <th>Abstract</th>
+            </tr>
+            <% for(i=0;i<forti.length;i++){ %>
+            <tr>
+        
+             <td style="width:75px;"><span><a href="/fortid?id=<%=forti[i].title%>&tech=<%=encodeURIComponent(forti[i].technology)%>"><%= forti[i].title%></a></span></td>
+             <td><%=forti[i].technology%></td>
+             <td><%= forti[i].abstract%></td>
+        
+            </tr>
+        <% } %>
+          </table>
+        </div>
+   
+</article>
+</section>
+</FONT>
+<script>
+function display(evt,d){
+    var i, bcontent,bvalue;
+    bcontent=document.getElementsByClassName("bcontent");
+    for(i=0;i<bcontent.length;i++){
+        bcontent[i].style.display="none";
+    }
+    bvalue=document.getElementsByClassName("bvalue");
+    for(i=0;i<bvalue.length;i++){
+        bvalue[i].className=bvalue[i].className.replace("active","");
+    }
+    document.getElementById(d).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+</body>
+</html>

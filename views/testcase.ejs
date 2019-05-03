@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+index.html
+-->
+<html lang="en">
+    <head>
+        <title>SARDS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="colorlib.com">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="/css/style.css" type="text/css" rel = "stylesheet">
+      
+    </head>
+    <body ng-app="clientesApp">
+        <div class="hb">
+                <div class="logo">
+                    <a href="/"> <img src="/views/CASTb.png"></a>
+                  </div>
+                    
+                </div>
+
+    <div ng-controller="clientesCtrl">
+
+    <section>
+        <nav>
+         <input style="margin:5px;" ng-model="searchText" placeholder="cwe number">
+                <div class="dropdown" ng-repeat=" x in feedback | filter:searchText ">
+            <button class="dropbtn" ng-click="view($event)"><div>{{ x.cwe }}</div></button>
+            </div>       
+        </nav>
+        <article>
+        <div style="overflow-x:auto;">
+        <center><b>SARDS Examples</b></center>
+        
+        <br><br>
+        <div ng-repeat="x in value">
+        <button class="filename" ng-click="disp($event)">{{x.name}}</button>
+        </div> 
+        </div>
+        </article>
+        <article class="code" ng-if="codedata">
+          <span><b>{{codedata.name}}</b></span><br>
+          <pre><code>{{codedata.code}}</code></pre>
+       
+        </article>
+    </section>
+    
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <script type="text/javascript">
+            var clientesApp = angular.module('clientesApp', []);
+
+            //Define the clientesCtrl controller.
+            clientesApp.controller('clientesCtrl', function clientsList($scope, $http){
+              
+                // $scope.listView = function(){
+                    //alert("View");
+                    $http.get('/sardscwe').then(function(data){
+                        $scope.clientes = data.data;
+                        $scope.feedback = data.data;
+                    }); 
+                //};
+            
+               $scope.view=function(){
+                  console.log(event.target.innerText)
+                   var id= {id: event.target.innerText}
+                   $http.post('/sardsid',id).then(function(data){
+                       $scope.value=data.data;
+                   })
+               }
+               $scope.disp=function(){
+                  console.log(event.target.innerText)
+                  var id= {id: event.target.innerText}
+                  $http.post('/sardscode',id).then(function(data){
+                        console.log(data.data)
+                        $scope.codedata=data.data;
+                  })
+              }
+            });
+        </script>
+    </body>
+</html>
